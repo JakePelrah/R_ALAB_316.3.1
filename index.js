@@ -47,6 +47,7 @@ var menuLinks = [
 
 
 
+// populate the top menu with links
 populateLinks(topMenuEl, menuLinks)
 
 // select and cache the all of the <a> elements inside 
@@ -72,19 +73,25 @@ topMenuEl.addEventListener('click', (e) => {
   // Within the event listener, if the clicked <a> element does not yet have a 
   // class of "active" (it was inactive when clicked):
   if (!target.classList.contains('active')) {
+
+    // extract sublinks
     const { subLinks } = menuLinks.find(link => link.text === target.textContent)
-    console.log(subLinks)
     if (subLinks) {
+      // build the sub menu
       buildSubMenu(subLinks)
+      // show the sub menu
       subMenuEl.style.top = '100%'
     }
+    // if user clicked about
     else if (target.textContent === 'about') {
+      // hide the sub menu
       subMenuEl.style.top = '0'
-      window.alert(99)
+      // insert about into main element
       mainEl.innerHTML = `<h1>${target.textContent.toUpperCase()}</h1>`
     }
   }
   else {
+    // hide the sub menu
     subMenuEl.style.top = '0'
   }
 
@@ -125,8 +132,6 @@ subMenuEl.addEventListener('click', (e) => {
   // Update the contents of mainEl, within an <h1>, to the contents 
   // of the <a> element clicked within subMenuEl.
   mainEl.innerHTML = `<h1>${target.textContent.toUpperCase()}</h1>`
-
-
 })
 
 
