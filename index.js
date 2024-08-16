@@ -87,7 +87,7 @@ topMenuEl.addEventListener('click', (e) => {
       // hide the sub menu
       subMenuEl.style.top = '0'
       // insert about into main element
-      mainEl.innerHTML = `<h1>${target.textContent.toUpperCase()}</h1>`
+      mainEl.innerHTML = `<h1>${toCamelCase(target.textContent)}</h1>`
     }
   }
   else {
@@ -131,7 +131,8 @@ subMenuEl.addEventListener('click', (e) => {
 
   // Update the contents of mainEl, within an <h1>, to the contents 
   // of the <a> element clicked within subMenuEl.
-  mainEl.innerHTML = `<h1>${target.textContent.toUpperCase()}</h1>`
+  mainEl.innerHTML = `<h1>${toCamelCase(target.textContent)}</h1>`
+
 })
 
 
@@ -160,4 +161,11 @@ function populateLinks(parent, links) {
     // append to the parent
     parent.append(a)
   }
+}
+
+// https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+function toCamelCase(str) {
+  const strArray = str.split(' ')
+  const camelArray = strArray.map(str => str.charAt(0).toUpperCase() + str.slice(1))
+  return camelArray.join(' ')
 }
